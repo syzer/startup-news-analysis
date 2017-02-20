@@ -6,7 +6,7 @@ This is the source code of MonkeyLearn's series of posts related to analyzing se
 
 The project itself is a Scrapy project that is used to gather data from different sites like TechCrunch and VentureBeat. Besides, there are a series of Python scripts and Jupyter notebooks that implement other logic like data processing and communication with the MonkeyLearn API.
 
-### Startup articles news scraping (or whatever the title of the post is)
+### Filtering tech news with Machine Learning
 
 The TechCrunch, VentureBeat, and Recode spiders (startup_news/spiders) are used to gather data to train a topic classifier in MonkeyLearn. Article title, subtitle (if exists), text, and tags are used as sample text. A subsample of the whole dataset has to be tagged by a human in order to train a model.
 
