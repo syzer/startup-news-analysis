@@ -42,7 +42,7 @@ class VentureBeatSpider(scrapy.Spider):
 
             url = self.generate_url(date, page_number+1)
             request = scrapy.Request(url,
-                            callback=self.parse_page)
+                            callback=self.parse)
             request.meta['date'] = date
             request.meta['page_number'] = page_number
             yield request
