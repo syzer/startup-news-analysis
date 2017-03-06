@@ -14,7 +14,10 @@ class VentureBeatSpider(scrapy.Spider):
 
         date = start_date
         while date <= datetime.now():
-            yield scrapy.Request(self.generate_url(date))
+            new_request = scrapy.Request(self.generate_url(date))
+            new_request.meta["date"] = date
+            new_request.meta["page_number"] = 1
+            yield new_request
             date += timedelta(days=1)
 
     def generate_url(self, date, page_number=None):
@@ -24,12 +27,6 @@ class VentureBeatSpider(scrapy.Spider):
         return url
 
     def parse(self, response):
-        response.meta["date"] = datetime.strptime(response.url[-11:-1], "%Y/%m/%d")
-        response.meta["page_number"] = 1
-        return self.parse_page(response)
-
-
-    def parse_page(self, response):
         date = response.meta['date']
         page_number = response.meta['page_number']
 
