@@ -1,6 +1,6 @@
 # Startup news scraping and classification
 
-This is the source code of MonkeyLearn's series of posts related to analyzing sentiment and aspects from hotel reviews using machine learning models.
+This is the source code of MonkeyLearn's series of posts related to analyzing startup news using machine learning models.
 
 ### Code organization
 
