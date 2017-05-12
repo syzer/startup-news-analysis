@@ -1,15 +1,19 @@
 from datetime import datetime, timedelta
-from urlparse import urlparse
+
+try:
+    from urllib.parse import urlparse
+except ImportError:
+    from urlparse import urlparse
 import scrapy
 
 from startup_news.items import Article
 from startup_news.loaders import RecodeArticleLoader
 
-class RecodeSpider(scrapy.Spider):
 
+class RecodeSpider(scrapy.Spider):
     name = "recode"
     start_urls = [
-        #the start of the recode archive
+        # the start of the recode archive
         "http://www.recode.net/archives/1"
     ]
 
@@ -43,7 +47,8 @@ class RecodeSpider(scrapy.Spider):
         l.add_xpath('text', '//div[contains(@class,"c-entry-content")]/p//text()')
 
         # I do it in 2 steps because I don't know how to do this with a single xpath
-        l.add_value('tags', response.xpath('//div[contains(@class, "c-entry-group-labels")]')[0].xpath(".//span/text()").extract())
+        l.add_value('tags', response.xpath('//div[contains(@class, "c-entry-group-labels")]')[0].xpath(
+            ".//span/text()").extract())
 
         url = response.url.split("/")
         date = datetime(int(url[3]), int(url[4]), int(url[5]))
